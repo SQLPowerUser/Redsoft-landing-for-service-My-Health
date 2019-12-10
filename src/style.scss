@@ -346,7 +346,7 @@ input[type="radio"]:checked + span {
 	margin: auto;
 	background-image: repeating-linear-gradient(135deg, #fff, #abc 10px, #fff 10px, #fff 19px);
 	background-size: 80px 80px, 100% 100%;
-  border: 1px solid #eee;
+	border: 1px solid #eee;
 	border-radius: 10px;
 	animation: progressBar01 2s linear infinite;
 }
