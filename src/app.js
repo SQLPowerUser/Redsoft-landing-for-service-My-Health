@@ -1,12 +1,10 @@
 import './style.scss';
 require.context('./public', true, /\.(png|woff)$/i);
 
++function() {
+	function GID(i) {return document.getElementById(i);}
+	function QS(el,s) {return el.querySelector(s);}
 
-function GID(i) {return document.getElementById(i);}
-function QS(el,s) {return el.querySelector(s);}
-
-
-function init() {
 	let emailField = QS(GID('leave-request'), 'input');
 	setTimeout(function() { // for IE11
 		emailField.value = '';
@@ -101,13 +99,11 @@ function init() {
 			msgBlock.innerHTML = msg[validate];
 		}
 		return validate;
-	}
+	} // checkEmail
 
 	GID('leave-request-send-btn').onclick = function() {
 		if (!checkEmail()) {
 			emailField.focus();
 		}
-	}
-}; // init
-
-document.body.onload = init();
+	} // onclick
+}();
