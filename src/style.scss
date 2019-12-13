@@ -5,7 +5,7 @@
 	src:url(public/roboto-v20-cyrillic_latin-regular.woff) format('woff');
 }
 
-@import 'var.scss';
+@import '_vars.scss';
 
 *, *:before, *:after {
 	box-sizing: border-box;
@@ -43,9 +43,12 @@ input[type="radio"] {
 }
 
 
+
 header {
 	@include header-footer;
 	min-height: 640px;
+	opacity: 1;
+	transition: opacity 2s;
 }
 
 .nav {
@@ -121,7 +124,7 @@ input[type="radio"]:checked + span {
 
 
 
-#what-is-it {
+.what-is-it {
 	@include fac;
 	height: 950px;
 	position: relative;
@@ -158,7 +161,7 @@ input[type="radio"]:checked + span {
 
 
 
-#application-functions {
+.application-functions {
 	@include fac;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -222,7 +225,7 @@ input[type="radio"]:checked + span {
 
 
 
-#capabilities {
+.capabilities {
 	height: 1012px;
 }
 
@@ -279,7 +282,7 @@ input[type="radio"]:checked + span {
 
 
 
-#specialist {
+.specialist {
 	height: 640px;
 	background: #F1F2FA;
 	display: flex;
@@ -303,7 +306,7 @@ input[type="radio"]:checked + span {
 
 
 
-#leave-request {
+.leave-request {
 	height: 580px;
 	background: #E3E7F3;
 	color: #222;
@@ -329,17 +332,17 @@ input[type="radio"]:checked + span {
 	background: transparent;
 }
 
-#leave-request-send-btn {
+.leave-request-send-btn {
 	@include btn(160px, $background-button, $background-button-hover);
 	cursor: pointer;
 	margin-left: 40px;
 }
 
-#leave-request-message-block {
+.leave-request-message-block {
 	@include fac;
 }
 
-#progress {
+.progress {
 	display: none;
 	height: 20px;
 	width: 560px;

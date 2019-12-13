@@ -50,17 +50,24 @@ require.context('./public', true, /\.(png|woff)$/i);
 	sliderIndicator.style.width = (sliderIndicator.children.length * 12) + 30 + 'px'; // for IE11
 
 	let frame = 0, step = 0;
+
+	function renderFrame() {
+		header.style.background = 'center / cover no-repeat url(public/slider' + frame + '.png)';
+		sliderIndicator.children[frame*2].checked = true;
+		for (let k in inform[frame]) {
+			QS(header, '.slider-info-' + k).textContent = inform[frame][k];
+		}
+	}
+
 	function checkSlider() {
+		console.log('from checkSlider, header.pause =', header.pause, '   step =', step);
 		if (header.pause && step) {return;}
+		if (header.pause && !step) {renderFrame();}
 		step = step % 10;
 		if (step == 0) {
 			frame = frame % inform.length;
 			if (header.pause) {return;}
-			header.style.background = 'center / cover no-repeat url(public/slider' + frame + '.png)';
-			sliderIndicator.children[frame*2].checked = true;
-			for (let k in inform[frame]) {
-				QS(header, '.slider-info-' + k).textContent = inform[frame][k];
-			}
+			renderFrame();
 			frame++;
 		}
 		step++;
@@ -101,7 +108,7 @@ require.context('./public', true, /\.(png|woff)$/i);
 		return validate;
 	} // checkEmail
 
-	GID('leave-request-send-btn').onclick = function() {
+	QS(document,'.leave-request-send-btn').onclick = function() {
 		if (!checkEmail()) {
 			emailField.focus();
 		}
