@@ -109,8 +109,7 @@ require.context('./public', true, /\.(png|woff)$/i);
 	} // checkEmail
 
 	QS(document,'.leave-request-send-btn').onclick = function() {
-		if (!checkEmail()) {
-			emailField.focus();
-		}
-	} // onclick
+		checkEmail();
+		emailField.focus();
+	}
 }();
