@@ -43,13 +43,35 @@ require.context('./public', true, /\.(png|woff)$/i);
 			caption: 'Следить за здоровьем станет проще',
 			text: 'Скоро вы сможете находиться на связи со своим лечащим врачом независимо от своего местоположения, вести дневник мониторинга самочувствия, получать рекомендации по плану лечения и многое другое.',
 		},
+		{
+			caption: 'Herjsdfgfds dhgd hhhhh',
+			text: 'ewfhuwerhfuhr gkrehglhregleg lseghsh sd;ghsdg sdjflhgldlhsdthksdjhk;ldgj hklg;lh ksgjh ;lsgjkhjgdklhgk;dhl',
+		},
+		{
+			caption: '444444444444444444444',
+			text: '124679265709420935824527846576429c2346 56 4657 b4 624365 34256437 56346 327967 2363',
+		},
 	];
 
+	let informLen = inform.length;
+
+	// async loan images
+	for (let i = 1; i < informLen; i++) {
+		let img = new Image();
+		img.src = 'public/slider' + i + '.png';
+	}
+
 	let sliderIndicator = QS(header, '.slider-indicator');
-	sliderIndicator.innerHTML = new Array(inform.length+1).join('<input type="radio" name="frame"><span></span>'); // IE11 not support String.repeat()
+	sliderIndicator.innerHTML = new Array(informLen+1).join('<input type="radio" name="frame"><span></span>'); // IE11 not support String.repeat()
 	sliderIndicator.style.width = (sliderIndicator.children.length * 12) + 30 + 'px'; // for IE11
 
-	let frame = 0, step = 0;
+
+	function trEnd() {
+		header.removeEventListener('transitionend', trEnd);
+		header.style.opacity = 1;
+	};
+
+	let frame = 0, step = 0, firstRun = 1;
 
 	function renderFrame() {
 		header.style.background = 'center / cover no-repeat url(public/slider' + frame + '.png)';
@@ -60,13 +82,17 @@ require.context('./public', true, /\.(png|woff)$/i);
 	}
 
 	function checkSlider() {
-		console.log('from checkSlider, header.pause =', header.pause, '   step =', step);
 		if (header.pause && step) {return;}
 		if (header.pause && !step) {renderFrame();}
 		step = step % 10;
 		if (step == 0) {
-			frame = frame % inform.length;
+			frame = frame % informLen;
 			if (header.pause) {return;}
+			if (!firstRun) {
+				header.style.opacity = 0.6;
+			}
+			firstRun = 0;
+			header.addEventListener('transitionend', trEnd);
 			renderFrame();
 			frame++;
 		}
