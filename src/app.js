@@ -44,12 +44,12 @@ require.context('./public', true, /\.(png|woff)$/i);
 			text: 'Скоро вы сможете находиться на связи со своим лечащим врачом независимо от своего местоположения, вести дневник мониторинга самочувствия, получать рекомендации по плану лечения и многое другое.',
 		},
 		{
-			caption: 'Herjsdfgfds dhgd hhhhh',
-			text: 'ewfhuwerhfuhr gkrehglhregleg lseghsh sd;ghsdg sdjflhgldlhsdthksdjhk;ldgj hklg;lh ksgjh ;lsgjkhjgdklhgk;dhl',
+			caption: 'Заголовок 3',
+			text: 'Текст для <br> учебного кадра <br> номер три',
 		},
 		{
-			caption: '444444444444444444444',
-			text: '124679265709420935824527846576429c2346 56 4657 b4 624365 34256437 56346 327967 2363',
+			caption: 'Заголовок 4',
+			text: 'Текст для <br> учебного кадра <br> номер четыре',
 		},
 	];
 
@@ -77,7 +77,7 @@ require.context('./public', true, /\.(png|woff)$/i);
 		header.style.background = 'center / cover no-repeat url(public/slider' + frame + '.png)';
 		sliderIndicator.children[frame*2].checked = true;
 		for (let k in inform[frame]) {
-			QS(header, '.slider-info-' + k).textContent = inform[frame][k];
+			QS(header, '.slider-info-' + k).innerHTML = inform[frame][k];
 		}
 	}
 
@@ -89,7 +89,7 @@ require.context('./public', true, /\.(png|woff)$/i);
 			frame = frame % informLen;
 			if (header.pause) {return;}
 			if (!firstRun) {
-				header.style.opacity = 0.6;
+				header.style.opacity = 0.8;
 			}
 			firstRun = 0;
 			header.addEventListener('transitionend', trEnd);
